@@ -1,0 +1,51 @@
+table ,td , th{
+    background: #cbd3ff;
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: inherit;
+    padding: 20px;
+}
+th{
+    background: #668573;
+}
+
+.searchField {
+    outline: none;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    border-radius: 10px;
+    padding: 5px;
+
+    border: 2px groove black ;
+    background: #858585;
+
+
+}
+.searchField:focus{
+    border-color: #7affbe;
+}
+.searchField:hover{
+    border-bottom-color: #7affbe;
+}
+
+.descricon {
+    margin-left: 5px;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+
+
+}
+
+#searchdiv {
+    width: inherit;
+    vertical-align: middle;
+    background: #007385;
+   
+}
+.filterValue{
+    background: #a9a9a9;
+}
+section{
+    width: 600px;
+}
