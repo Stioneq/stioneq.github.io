@@ -8,7 +8,6 @@ table ,td , th{
 th{
     background: #668573;
 }
-
 .searchField {
     outline: none;
     margin-bottom: 5px;
@@ -47,5 +46,19 @@ th{
     background: #a9a9a9;
 }
 section{
-    width: 600px;
+    width: 800px;
+}
+.asort{
+    background: #668573 url("images/sort_up.png");
+    background-size: 30px 30px;
+    background-position: right;
+    background-repeat: no-repeat;
+
+}
+.dsort{
+    background: #668573 url("images/sort_down.png");
+    background-size: 30px 30px;
+    background-position: right;
+    background-repeat: no-repeat;
+
 }
