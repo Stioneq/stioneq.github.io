@@ -2,6 +2,19 @@ $(document).ready(function() {
     var oldValue;
 
     /**
+     * Swap-rows in table in order to input array
+     * @param rowNumbers - contains new row values
+     */
+    function swapRows(rowNumbers) {
+        var k = 0;
+        for (var i = 0; i < rowNumbers.length; i++) {
+            $("tr:eq("+(rowNumbers[i]-k+1)+")").insertAfter($("tr:eq("+(i+1)+")"));
+            k+=1;
+        }
+
+    }
+
+    /**
      * Sort table
      * @param col - sorted column
      * @param isAsc - if @true , asc sort , else descent
@@ -11,6 +24,7 @@ $(document).ready(function() {
         var list = $("td:nth-child("+col+")").map(function(ev){
             return $(this).html();
         });
+        var copyList = list.slice();
         if(isAsc){
             list.sort();
         }else {
@@ -24,11 +38,21 @@ $(document).ready(function() {
 
             });
         }
-
-        console.log(list.length)
-
+        var rowNumbers = [];
         console.log(list);
+        console.log(copyList);
+        var length = list.length;
+        for(var i=0;i<length;i++){
+            for(var j=0;j<length;j++){
+                if(list[i] === copyList[j]){
 
+                    rowNumbers.push(j);
+                    list[i] = undefined;
+                }
+            }
+        }
+        console.log(rowNumbers);
+        swapRows(rowNumbers);
     }
 
     $("th").click(function () {
