@@ -1,18 +1,6 @@
 $(document).ready(function() {
     var oldValue;
 
-    /**
-     * Swap-rows in table in order to input array
-     * @param rowNumbers - contains new row values
-     */
-    function swapRows(rowNumbers) {
-        var k = 0;
-        for (var i = 0; i < rowNumbers.length; i++) {
-            $("tr:eq("+(rowNumbers[i]-k+1)+")").insertAfter($("tr:eq("+(i+1)+")"));
-            k+=1;
-        }
-
-    }
 
     /**
      * Sort table
@@ -20,39 +8,17 @@ $(document).ready(function() {
      * @param isAsc - if @true , asc sort , else descent
      */
     function sortTable(col, isAsc) {
+            var $tbody = $('table tbody');
+            $tbody.find('tr').sort(function(a,b){
+                var tda = $(a).find('td:eq('+col+')').text();
+                var tdb = $(b).find('td:eq('+col+')').text();
+                    if(isAsc) {
+                        return tda > tdb ? 1 : tda < tdb ? -1 : 0;
+                    }else{
+                        return tda < tdb ? 1 : tda > tdb ? -1 : 0;
+                    }
 
-        var list = $("td:nth-child("+col+")").map(function(ev){
-            return $(this).html();
-        });
-        var copyList = list.slice();
-        if(isAsc){
-            list.sort();
-        }else {
-            list.sort(function sort(a, b) {
-                if (a < b) {
-                    return 1;
-                } else if (a > b) {
-                    return -1;
-                }
-                return 0;
-
-            });
-        }
-        var rowNumbers = [];
-        console.log(list);
-        console.log(copyList);
-        var length = list.length;
-        for(var i=0;i<length;i++){
-            for(var j=0;j<length;j++){
-                if(list[i] === copyList[j]){
-
-                    rowNumbers.push(j);
-                    list[i] = undefined;
-                }
-            }
-        }
-        console.log(rowNumbers);
-        swapRows(rowNumbers);
+            }).appendTo($tbody);
     }
 
     $("th").click(function () {
@@ -66,7 +32,7 @@ $(document).ready(function() {
             header.removeClass("dsort");
             header.addClass("asort");
         }
-        sortTable(header.index() + 1,header.hasClass("asort"));
+        sortTable(header.index(),header.hasClass("asort"));
 
 
     });
